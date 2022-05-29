@@ -5,29 +5,31 @@
 <!--<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>-->
 <script src="build/aframe-ar.js"></script>
 
-<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-
 <!-- particles system component -->
-<script
-    src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+<script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
 
-<!-- speech command component -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
-<script src="build/aframe-speech-command-component.js"></script>
-
-<script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-
+ <!-- speech command component -->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
+ <script src="build/aframe-speech-command-component.js"></script>
 
 <!--Distance-->
 
 <script>
     AFRAME.registerComponent("marker-distance", {
         init: function () {
+<<<<<<< HEAD
             this.shell = document.querySelector("#shell")
             this.Hydrogen1 = document.querySelector("#Material")
             this.water = document.querySelector("#sea")
             this.markerO = document.querySelector("#markerO")
             this.markerH = document.querySelector("#markerH")
+=======
+            this.dog = document.querySelector("#dog")
+            this.fish = document.querySelector("#fish")
+            this.dinosaur = document.querySelector("#dinosaur")
+            this.marker1 = document.querySelector("#marker1")
+            this.marker2 = document.querySelector("#marker2")
+>>>>>>> ba298ef1f5d39d9c3cf625c81c3c830db31ed666
 
         },
         tick: function () {
@@ -42,6 +44,7 @@
             markerDistance = markerOPos.disdtanceTo(markerHPos);
 
             if (markerDistance < 2) {
+<<<<<<< HEAD
                 this.shell.setAttribute("visible", false)
                 this.material.setAttribute("visible", false)
                 this.sea.setAttribute("visible", true)
@@ -49,6 +52,15 @@
                 this.shell.setAttribute("visible", true)
                 this.material.setAttribute("visible", true)
                 this.sea.setAttribute("visible", false)
+=======
+                this.dog.setAttribute("visible", false)
+                this.fish.setAttribute("visible", false)
+                this.dinosaur.setAttribute("visible", true)
+            } else {
+                this.dog.setAttribute("visible", true)
+                this.fish.setAttribute("visible", true)
+                this.dinosaur.setAttribute("visible", false)
+>>>>>>> ba298ef1f5d39d9c3cf625c81c3c830db31ed666
             }
 
         }
@@ -61,8 +73,11 @@
     <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
         arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 
+<!-- Deliverable 1 -->
 
+<a-marker preset="hiro">
 
+<<<<<<< HEAD
         <!--Deliverable 1-->
 
   <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
@@ -119,30 +134,41 @@
             <a-box position="0 0 0" rotation="0 45 0" color="#53225D"></a-box>
             <a-sphere position="0.6 0.5 0.7" radius="0.35" color="#681E40"></a-sphere>
             <a-cylinder position="1.25 0 1.3" radius="0.5" height="1" color="#1E5D5D"></a-cylinder>
+=======
+    <a-box position="0 0 0" rotation="0 45 0" color="#F2F3F4"></a-box>
+    <a-sphere position="0.6 0.5 0.7" radius="0.35" color="#154360"></a-sphere>
+    <a-cylinder position="1.25 0 1.3" radius="0.5" height="1" color="#681E40"></a-cylinder>
+>>>>>>> ba298ef1f5d39d9c3cf625c81c3c830db31ed666
 
-            <a-entity id="annyang" annyang-speech-recognition></a-entity>
+    <a-entity id="annyang" annyang-speech-recognition></a-entity>
 
-            <a-entity id="switch"
-                speech-command__start="command: start; type: attribute; attribute: visible; targetElement: #snow; value: true;"
-                speech-command__stop="command: stop; type: attribute; attribute: visible;  targetElement: #snow; value: false ;">
-            </a-entity>
+    <a-entity id="switch"
+        speech-command__start="command: start; type: attribute; attribute: visible; targetElement: #snow; value: true;"
+        speech-command__stop="command: stop; type: attribute; attribute: visible;  targetElement: #snow; value: false ;">
+    </a-entity>
 
-            <a-entity id="snow" position="0 5 -15" particle-system="color: #ffffff"> </a-entity>
+    <a-entity id="snow" position="0 5 -15" particle-system="color: #ffffff"> </a-entity>
 
-        </a-marker>
+</a-marker>
 
 
-        <!--Deliverable 2-->
+<!-- Deliverable 2 -->
 
-        <!--my self-->
+        <!-- Μy self -->
 
         <a-marker preset="dpsd19036" type="pattern" url="./assets/pattern-dpsd19036.patt">
+<<<<<<< HEAD
             <a-image src="./assets/Eirini.jpg" rotation="90 180 0" position="0 0.2 0"> </a-image>
             <a-text text="value: Eirini Evagelatou Manolia" rotation="-90 0 0" position="-0.6 0.2 0.7" color="#AC4C4C"></a-text>
+=======
+            <a-image src="./assets/eirini.png" rotation="90 180 0" position="0 0.2 0"> </a-image>
+            <a-text text="value: Eirini Evangelatou Manolia " rotation="-90 0 0" position="-0.6 0.2 0.7" color="#AC4C4C"></a-text>
+>>>>>>> ba298ef1f5d39d9c3cf625c81c3c830db31ed666
         </a-marker>
 
-        <!--add animation-->
+        <!-- Animation -->
 
+<<<<<<< HEAD
     <a-assets>>
         <a-asset-item id="shell" src="./assets/scene.gltf"></a-asset-item>
     </a-assets>
@@ -157,35 +183,72 @@
 
 
         <!--Shell animation marker-->
+=======
+    <a-assets>
+        <a-asset-item id="dog" src="./assets/dog.gltf"></a-asset-item>
+    </a-assets>
+
+        <a-assets>
+            <a-asset-item id="fish" src="./assets/fish.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-assets>
+            <a-asset-item id="dinosaur" src="./assets/dinosaur.gltf"></a-asset-item>
+        </a-assets>
+
+        <!-- Dog animation marker -->
+>>>>>>> ba298ef1f5d39d9c3cf625c81c3c830db31ed666
 
         <a-marker id="markerO" type="pattern" url="./assets/pattern-card-O.patt">
             <a-image src="assets/card-O.png" rotation="-90 0 0" width: 1.5; height: 1.5></a-image>
+<<<<<<< HEAD
             <a-entity position="0 1 0"  scale="0.5 0.5 0.5" rotation="-90 0 0" gltf-model="#shell"
+=======
+            <a-entity position="0 1 0"  scale="0.5 0.5 0.5" rotation="-90 0 0" gltf-model="#dog"
+>>>>>>> ba298ef1f5d39d9c3cf625c81c3c830db31ed666
                 animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 360; loop: true;">
             </a-entity>
         </a-marker>
 
+<<<<<<< HEAD
         <!--Material animation marker-->
 
         <a-marker id="markerH" type="pattern" url="./assets/pattern-card-H.patt">
             <a-image src="assets/card-H.png" rotation="-90 0 0" width: 1.5; height: 1.5></a-image>
             <a-entity position="0 1 0" rotation="0 90 0" gltf-model="#material"
+=======
+         <!-- Fish animation marker -->
+
+         <a-marker id="marker2" type="pattern" url="./assets/pattern-card-H.patt">
+            <a-image src="assets/card-H.png" rotation="-90 0 0" width: 1.5; height: 1.5></a-image>
+            <a-entity position="0 1 0" rotation="0 90 0" gltf-model="#fish"
+>>>>>>> ba298ef1f5d39d9c3cf625c81c3c830db31ed666
                 animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;">
 
             </a-entity>
         </a-marker>
 
+         <!-- Dinosaur animation marker -->
+
+         <a-marker id="marker2" type="pattern" url="./assets/pattern-card-H.patt">
+            <a-image src="assets/card-H.png" rotation="-90 0 0" width: 1.5; height: 1.5></a-image>
+            <a-entity position="0 1 0" rotation="0 90 0" gltf-model="#dinosaur"
+                animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;">
+
+            </a-entity>
+        </a-marker>
 
         <a-entity position="0 0 0" rotation="0 90 0"
+<<<<<<< HEAD
                 gltf-model="#shell"
+=======
+                gltf-model="#dinosaur"
+>>>>>>> ba298ef1f5d39d9c3cf625c81c3c830db31ed666
                 animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;" 
                 visible="false" >
                 </a-entity>
 
          <a-entity markerDistance> </a-entity>
-
-        <a-entity camera></a-entity>
-    </a-scene>
 
 </body>
 
