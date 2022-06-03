@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+<!-- we import arjs version without NFT but with marker + location based support -->
+<!--<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>-->
+<script src="build/aframe-ar.js"></script>
+
+<!-- particles system component -->
+<script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+
+ <!-- speech command component -->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
+ <script src="build/aframe-speech-command-component.js"></script>
+
+<!--Distance-->
+
+<script>
+    AFRAME.registerComponent("marker-distance", {
+        init: function () {
+            this.dog = document.querySelector("#dog")
+            this.fish = document.querySelector("#fish")
+            this.dinosaur = document.querySelector("#dinosaur")
+            this.marker1 = document.querySelector("#marker1")
+            this.marker2 = document.querySelector("#marker2")
+
+        },
+        tick: function () {
+            var marker1Pos, marker2Pos, markerDistance
+
+            marker1Pos = new THREE.Vector3();
+            this.marker1.object3D.getWorldPosition(marker1Pos);
+
+            marker2Pos = new THREE.Vector3();
+            this.marker2.object3D.getWorldPosition(marker2Pos);
+
+            markerDistance = marker1Pos.disdtanceTo(marker2Pos);
+
+            if (markerDistance < 2) {
+                this.dog.setAttribute("visible", false)
+                this.fish.setAttribute("visible", false)
+                this.dinosaur.setAttribute("visible", true)
+            } else {
+                this.dog.setAttribute("visible", true)
+                this.fish.setAttribute("visible", true)
+                this.dinosaur.setAttribute("visible", false)
+            }
+
+        }
+    });
+
+</script>
+
+
+<body style="margin : 0px; overflow: hidden;">
+    <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
+        arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+
+<!-- Deliverable 1 -->
+
+<a-marker preset="hiro">
+
+    <a-box position="0 0 0" rotation="0 45 0" color="#F2F3F4"></a-box>
+    <a-sphere position="0.6 0.5 0.7" radius="0.35" color="#154360"></a-sphere>
+    <a-cylinder position="1.25 0 1.3" radius="0.5" height="1" color="#681E40"></a-cylinder>
+
+    <a-entity id="annyang" annyang-speech-recognition></a-entity>
+
+    <a-entity id="switch"
+        speech-command__start="command: start; type: attribute; attribute: visible; targetElement: #snow; value: true;"
+        speech-command__stop="command: stop; type: attribute; attribute: visible;  targetElement: #snow; value: false ;">
+    </a-entity>
+
+    <a-entity id="snow" position="0 5 -15" particle-system="color: #ffffff"> </a-entity>
+
+</a-marker>
+
+
+<!-- Deliverable 2 -->
+
+        <!-- Μy self -->
+
+        <a-marker preset="dpsd19036" type="pattern" url="./assets/pattern-dpsd19036.patt">
+            <a-image src="./assets/eirini.png" rotation="90 180 0" position="0 0.2 0"> </a-image>
+            <a-text text="value: Eirini Evangelatou Manolia " rotation="-90 0 0" position="-0.6 0.2 0.7" color="#AC4C4C"></a-text>
+        </a-marker>
+
+        <!-- Animation -->
+
+    <a-assets>
+        <a-asset-item id="dog" src="./assets/dog.gltf"></a-asset-item>
+    </a-assets>
+
+        <a-assets>
+            <a-asset-item id="fish" src="./assets/fish.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-assets>
+            <a-asset-item id="dinosaur" src="./assets/dinosaur.gltf"></a-asset-item>
+        </a-assets>
+
+        <!-- Dog animation marker -->
+
+        <a-marker id="marker1" type="pattern" url="./assets/pattern-card-O.patt">
+            <a-image src="assets/card-O.png" rotation="-90 0 0" width: 1.5; height: 1.5></a-image>
+            <a-entity position="0 1 0"  scale="0.5 0.5 0.5" rotation="-90 0 0" gltf-model="#dog"
+                animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 360; loop: true;">
+            </a-entity>
+        </a-marker>
+
+         <!-- Fish animation marker -->
+
+         <a-marker id="marker2" type="pattern" url="./assets/pattern-card-H.patt">
+            <a-image src="assets/card-H.png" rotation="-90 0 0" width: 1.5; height: 1.5></a-image>
+            <a-entity position="0 1 0" rotation="0 90 0" gltf-model="#fish"
+                animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;">
+
+            </a-entity>
+        </a-marker>
+
+         <!-- Dinosaur animation marker -->
+
+         <a-marker id="marker2" type="pattern" url="./assets/pattern-card-H.patt">
+            <a-image src="assets/card-H.png" rotation="-90 0 0" width: 1.5; height: 1.5></a-image>
+            <a-entity position="0 1 0" rotation="0 90 0" gltf-model="#dinosaur"
+                animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;">
+
+            </a-entity>
+        </a-marker>
+
+        <a-entity position="0 0 0" rotation="0 90 0"
+                gltf-model="#dinosaur"
+                animation__rotate = "property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;" 
+                visible="false" >
+                </a-entity>
+
+         <a-entity markerDistance> </a-entity>
+
+<!-- Deliverable 3 -->
+
+<!-- Σε αυτό το παραδοτέο, θα αναπτύξετε Διαδραστικές Εφαρμογές Επαυξημένης Πραγματικότητας που βασίζονται στο Web,
+    με βάση την τοποθεσία. Επομένως, θα πρέπει να επεξεργαστείτε το .html που βρίσκεται στον φάκελο βάσει τοποθεσίας. -->
+
+    <!-- Ο κώδικας που βρήκα στο index του location based -->
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>GeoAR.js demo</title>
+        <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+        <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>-->
+        <script src='build/aframe-ar-nft.js'></script>
+    </head>
+    <!-- mexri edo okey -->
+ <!-- NA TO FTIAJO -->
+    <body style='margin: 0; overflow: hidden;'>
+        <a-scene
+            vr-mode-ui="enabled: false"
+            embedded
+            arjs='sourceType: webcam; debugUIEnabled: false;'>
+    
+            <a-box
+                material="color: red;"
+                scale="20 20 20"
+                gps-entity-place="latitude: 44.506477; longitude: 11.301524;">
+            </a-box>
+            <a-camera
+                rotation-reader
+                gps-camera="simulateLatitude: 44.504348; simulateLongitude: 11.301027; minDistance: 1; maxDistance: 700;"
+            >
+
+                <!--Add 3d model NA TO FTIAJO-->
+                <a-assets>
+                    <a-asset-item id="tower" src="./assets/tower.gltf"></a-asset-item>
+                </a-assets>
+        
+                <!-- add settings for the 3d model NA TO FTIAKSO -->
+                <a-entity position="0 -7 -85">
+                    <a-entity gltf-model="#tower" scale="4 4 4" class="click" 
+                           animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;" 
+                           gps-entity-place="latitude:  37.551170; longitude: 126.988228;" text-show>
+        
+                           <a-entity class="clickable"
+                                  position="0 2 1"
+                                  text="color: #1a1a1a; font-size:12; font-type: bold; align: center; value: Namsan     Tower ;
+                                   width: 10; height: 10;  letterSpacing: 5;" visible="false">
+                                </a-entity>
+        
+                        </a-entity>
+                    </a-entity>
+        
+                    <!-- Add coordinates for National History Museum Athens Greece -->
+                <a-camera
+                    rotation-reader
+                    gps-camera="simulateLatitude:  37.978300; simulateLongitude: 23.732969; minDistance: 1; maxDistance: 700;"
+                >
+                <!-- TI PREPEI NA VALO STO MID APO PANO???? -->>
+            </a-camera>
+        </a-scene>
+
+</body>
+
+</html>
+
+
+
+
