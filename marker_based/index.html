@@ -18,7 +18,7 @@
         init: function () {
             this.dog = document.querySelector("#dog")
             this.fish = document.querySelector("#fish")
-            this.dinosaur = document.querySelector("#dinosaur")
+            this.din = document.querySelector("#din")
             this.marker1 = document.querySelector("#marker1")
             this.marker2 = document.querySelector("#marker2")
         },
@@ -36,11 +36,11 @@
             if (markerDistance < 2) {
                 this.dog.setAttribute("visible", false)
                 this.fish.setAttribute("visible", false)
-                this.dinosaur.setAttribute("visible", true)
+                this.din.setAttribute("visible", true)
             } else {
                 this.dog.setAttribute("visible", true)
                 this.fish.setAttribute("visible", true)
-                this.dinosaur.setAttribute("visible", false)
+                this.din.setAttribute("visible", false)
             }
         }
     });
@@ -51,7 +51,7 @@
     <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
         arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
 
-        
+
 <!-- Deliverable 1 -->
 
 <a-marker preset="hiro">
@@ -92,7 +92,7 @@
         </a-assets>
 
         <a-assets>
-            <a-asset-item id="dinosaur" src="./assets/din.gltf"></a-asset-item>
+            <a-asset-item id="din" src="./assets/din.gltf"></a-asset-item>
         </a-assets>
 
         <!-- Dog animation marker -->
@@ -118,7 +118,7 @@
 
          <a-marker id="marker2" type="pattern" url="./assets/pattern-card-H.patt">
             <a-image src="assets/card-H.png" rotation="-90 0 0" width: 1.5; height: 1.5></a-image>
-            <a-entity position="0 1 0" rotation="0 90 0" gltf-model="#dinosaur"
+            <a-entity position="0 1 0" rotation="0 90 0" gltf-model="#din"
                 animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 360 0 0; loop: true;">
 
             </a-entity>
