@@ -9,7 +9,6 @@
     <script src='build/aframe-ar-nft.js'></script>
 </head>
 
-
 <body style='margin: 0; overflow: hidden;'>
     <a-scene
         vr-mode-ui="enabled: false"
@@ -19,12 +18,14 @@
         <a-box
             material="color: red;"
             scale="20 20 20"
-            gps-entity-place="latitude: 44.506477; longitude: 11.301524;">
+            gps-entity-place="latitude: 41.889980; longitude: 12.494260;">
         </a-box>
 
+        <!-- The Colosseum of Rome Italy coordinates -->
         <a-camera
             rotation-reader
-            gps-camera="simulateLatitude: 44.504348; simulateLongitude: 11.301027; minDistance: 1; maxDistance: 700;"
+            gps-camera="simulateLatitude: 41.889980; simulateLongitude: 12.494260; minDistance: 1; maxDistance: 700;"gltf-model="./assets/magnemite/scene.gltf"
+            rotation="0 180 0" animation-mixer scale="0.15 0.15 0.15"/>
         >
 		</a-camera>
 	</a-scene>
