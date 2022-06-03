@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,28 +7,24 @@
     <title>GeoAR.js demo</title>
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
     <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>-->
-    <script src='build/aframe-ar-nft.js'></script>  
-    <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
-</head>
+    <script src='build/aframe-ar-nft.js'></script>
 
-<script>
-    AFRAME.registerComponent("text-show", 
-    {
-        init: function () 
-        {
-            let toggle = false
-            this.el.addEventListener("click", (e) => 
-            {
-                let entity = document.querySelectorAll(".clickable")
-                entity.forEach(function (el) 
-                {
-                    el.setAttribute('visible', toggle)
+    <script>
+
+        AFRAME.registerComponent("text-show", {
+            init: function () {
+                let toggle = false
+                this.el.addEventListener("click", (e) => {
+                    let entity = document.querySelectorAll(".clickable")
+                    entity.forEach(function (el) {
+                        el.setAttribute("visible", toggle)
+                    })
+                    toggle = !toggle
                 })
-                toggle = !toggle
-            })
-        }
-    })
-</script>
+            }
+        })
+    </script>
+</head>
 
 <body style='margin: 0; overflow: hidden;'>
     <a-scene
@@ -35,40 +32,34 @@
 		embedded
 		arjs='sourceType: webcam; debugUIEnabled: false;'>
 
+        <a-entity id="cameraRig">
+            <a-entity id="head" camera wasd-controls look-controls cursor="rayOrigin: mouse" position="0 1 0"></a-entity>
+        </a-entity>
+
         <a-assets>
             <a-asset-item id="col" src="./assets/col.gltf"></a-asset-item>
         </a-assets>
 
-        <a-earth
-            scale="20 20 20"
-            position="0 1 -6"
-            gps-entity-place="latitude: 41.889980; longitude: 12.494260;"gltf-model="./assets/magnemite/col.gltf"
-            rotation="0 180 0" animation-mixer scale="0.15 0.15 0.15"/>
-        </a-earth>
+        <a-entity position="0 0 -120">
+
+        <a-entity gltf-model="#col" scale="3 3 3" class="click" 
+               animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;"
+                gps-entity-place="latitude: 31.239752; longitude: 121.499588;" text-show>
+                
+                <a-entity class="clickable"
+                          position="-1 6.5 1"
+                          text="color: #660066; font-size:12; font-type: bold; align: center; value: Oriental Pearl TV Tower Shanghai;
+                           width: 20; height: 20;  letterSpacing: 5;" visible="false">
+                        </a-entity>
+            </a-entity>
+        </a-entity>
 
         <!-- The Colosseum of Rome Italy coordinates -->
-
+    
         <a-camera
             rotation-reader
-            gps-camera="simulateLatitude: 41.889980; simulateLongitude: 12.494260; minDistance: 1; maxDistance: 700;"></a-camera>
+            gps-camera="simulateLatitude: 41.889980; simulateLongitude: 12.494260; minDistance: 1; maxDistance: 700;" >
 		</a-camera>
-
-        <a-entity id="cursor">
-            <a-entity cursor="rayOrigin: mouse"></a-entity>
-        </a-entity>
-
-        <a-entity
-                class="clickable"
-                position="-0.05 -1 1"
-                scale="4 4 4"
-                visible="false"
-                text="font-size:400; color: white; align:center; value: What you see is a 3d model of the Eiffel tower. 
-                Locally nicknamed La dame de fer (French for Iron Lady), it was constructed from 1887 
-                to 1889 as the centerpiece of the 1889 World's Fair and was initially criticized by some 
-                of France's leading artists and intellectuals for its design, but it has become a global 
-                cultural icon of France and one of the most recognizable structures in the world.">        
-        </a-entity>
 
 	</a-scene>
 </body>
- 
