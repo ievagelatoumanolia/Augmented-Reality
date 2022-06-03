@@ -16,16 +16,14 @@
 		embedded
         arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
 
+        <!-- Syros Cityhall-->
 
-        <!-- Syros Cityhall -->
-        
-            <a-image src="assets/cityhall.png" gps-entity-place="latitude: 37.444740; longitude: 24.942850;" 
-                position="1 2 1" scale="2 2 2">
-            </a-image>
+        <a-image gps-entity-place="latitude:37.445278; longitude: 24.943611" 
+        src="assets/cityhall.png" position="0 1 -9" scale="5 5 5" rotation="0 0 0" ></a-image>
 
-            <a-camera
-            gps-camera rotation-reader>    
-            </a-camera>
-    
-    </a-scene>
-</body>     
+  <a-camera rotation-reader
+   gps-camera="latitude: 44.4908615; longitude: 11.3326416; minDistance: 1; maxDistance: 700;">
+  </a-camera>
+
+	</a-scene>
+</body>
