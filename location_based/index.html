@@ -7,7 +7,23 @@
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
     <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>-->
     <script src='build/aframe-ar-nft.js'></script>
-   </head>
+
+    <script>
+
+        AFRAME.registerComponent("text-show", {
+            init: function () {
+                let toggle = false
+                this.el.addEventListener("click", (e) => {
+                    let entity = document.querySelectorAll(".clickable")
+                    entity.forEach(function (el) {
+                        el.setAttribute("visible", toggle)
+                    })
+                    toggle = !toggle
+                })
+            }
+        })
+    </script>
+</head>
 
 <body style='margin: 0; overflow: hidden;'>
     <a-scene
@@ -16,36 +32,34 @@
 		arjs='sourceType: webcam; debugUIEnabled: false;'>
 
         <a-entity id="cameraRig">
-            <a-entity id="head" 
-            camera wasd-controls look-controls 
-            cursor="rayOrigin: mouse" 
-            position="0 1 0"></a-entity>
+            <a-entity id="head" camera wasd-controls look-controls cursor="rayOrigin: mouse" position="0 1 0"></a-entity>
         </a-entity>
 
         <a-assets>
             <a-asset-item id="col" src="./assets/col.gltf"></a-asset-item>
         </a-assets>
 
+        <!--Click in the middle-->
+
         <a-entity position="0 0 -120">
 
             <a-entity gltf-model="#col" scale="3 3 3" class="click" 
-             animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; 
-             from:0 0 0; to: 0 360 0; loop: true;"
-            gps-entity-place="latitude:41.889980; longitude: 12.494260;" text-show>
+                   animation__rotate="property: rotation; dur: 5000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;"
+                    gps-entity-place="latitude: 41.889980; longitude: 12.494260;" text-show>
                     
                     <a-entity class="clickable"
-               position="-1 6.5 1"
-                text="color: #660066; font-size:12; font-type: bold; align: center; 
-                value: Chiao!;
-                   width: 20; height: 20;  letterSpacing: 5;"
-                    visible="false">
-            </a-entity>
+                              position="-1 6.5 1"
+                              text="color: #660066; font-size:12; font-type: bold; align: center; value: Ciao Italy!;
+                               width: 20; height: 20;  letterSpacing: 5;" visible="false">
+                            </a-entity>
                 </a-entity>
             </a-entity>
 
+        <!-- Colosseum, Rome, Italy coordinates -->
+    
         <a-camera
             rotation-reader
-            gps-camera="simulateLatitude: 41.889980; simulateLongitude: 12.494260; minDistance: 1; maxDistance: 700;"></a-camera>
-		</a-camera>
-	</a-scene>
+            gps-camera="simulateLatitude: 41.889980; simulateLongitude: 12.494260; minDistance: 1; maxDistance: 700;" >
+        </a-camera>
+    </a-scene>
 </body>
